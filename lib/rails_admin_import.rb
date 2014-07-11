@@ -39,7 +39,7 @@ module RailsAdmin
             @response = {}
 
             if request.post?
-              results = @abstract_model.model.run_import(params)
+              results = @abstract_model.model.run_import(params.permit!)
               @response[:notice] = results[:success].join("<br />").html_safe if results[:success].any?
               @response[:error] = results[:error].join("<br />").html_safe if results[:error].any?
             end
